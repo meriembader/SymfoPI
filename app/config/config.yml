@@ -10,7 +10,7 @@ parameters:
 
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: ~
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -69,3 +69,14 @@ swiftmailer:
 sensio_framework_extra:
    router:
         annotations: false
+
+# FOSUser Configuration
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+    service:                               # this line
+        mailer: fos_user.mailer.twig_swift # this line (from the comment above)
+    from_email:
+        address: "test@test.com" # change this
+        sender_name: "Test App"  # and this
